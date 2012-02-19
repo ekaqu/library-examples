@@ -1,9 +1,9 @@
-package com.ekaqu.guice.example.billing.mocks;
+package com.ekaqu.example.guice.billing.mocks;
 
-import com.ekaqu.guice.example.billing.ChargeResult;
-import com.ekaqu.guice.example.billing.CreditCard;
-import com.ekaqu.guice.example.billing.CreditCardProcessor;
-import com.ekaqu.guice.example.billing.Order;
+import com.ekaqu.example.guice.billing.ChargeResult;
+import com.ekaqu.example.guice.billing.CreditCard;
+import com.ekaqu.example.guice.billing.CreditCardProcessor;
+import com.ekaqu.example.guice.billing.Order;
 
 public class InMemoryCreditCardProcessor implements CreditCardProcessor {
     public ChargeResult charge(CreditCard card, Order order) {

@@ -1,7 +1,7 @@
-package com.ekaqu.guice.example.billing.mocks;
+package com.ekaqu.example.guice.billing.mocks;
 
-import com.ekaqu.guice.example.billing.ChargeResult;
-import com.ekaqu.guice.example.billing.TransactionLog;
+import com.ekaqu.example.guice.billing.ChargeResult;
+import com.ekaqu.example.guice.billing.TransactionLog;
 
 public class InMemoryTransactionLog implements TransactionLog {
     public void logChargeResult(ChargeResult result) {

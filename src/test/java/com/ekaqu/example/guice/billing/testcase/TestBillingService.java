@@ -1,10 +1,8 @@
-package com.ekaqu.guice.example.billing.testcase;
+package com.ekaqu.example.guice.billing.testcase;
 
-import com.ekaqu.guice.example.billing.BillingService;
-import com.ekaqu.guice.example.billing.BillingServiceFactory;
-import com.ekaqu.guice.example.billing.TestBillingModule;
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableCollection;
+import com.ekaqu.example.guice.billing.BillingService;
+import com.ekaqu.example.guice.billing.BillingServiceFactory;
+import com.ekaqu.example.guice.billing.TestBillingModule;
 import com.google.common.collect.ImmutableList;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
@@ -12,8 +10,6 @@ import org.testng.annotations.Test;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 

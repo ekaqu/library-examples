@@ -1,20 +1,16 @@
-package com.ekaqu.guice.example.billing;
+package com.ekaqu.example.guice.billing;
 
-import com.ekaqu.guice.example.billing.config.Configurations;
-import com.ekaqu.guice.example.billing.impl.RealBillingService;
-import com.ekaqu.guice.example.billing.mocks.InMemoryCreditCardProcessor;
-import com.ekaqu.guice.example.billing.mocks.InMemoryReceipt;
-import com.ekaqu.guice.example.billing.mocks.InMemoryTransactionLog;
+import com.ekaqu.example.guice.billing.config.Configurations;
+import com.ekaqu.example.guice.billing.impl.RealBillingService;
+import com.ekaqu.example.guice.billing.mocks.InMemoryCreditCardProcessor;
+import com.ekaqu.example.guice.billing.mocks.InMemoryReceipt;
+import com.ekaqu.example.guice.billing.mocks.InMemoryTransactionLog;
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.multibindings.Multibinder;
-import com.google.inject.name.Names;
 import org.apache.commons.configuration.*;
 
-import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.util.Properties;
 
 
 public class TestBillingModule extends AbstractModule {

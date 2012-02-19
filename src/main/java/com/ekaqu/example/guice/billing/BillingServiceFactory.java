@@ -1,4 +1,4 @@
-package com.ekaqu.guice.example.billing;
+package com.ekaqu.example.guice.billing;
 
 import java.util.Date;
 

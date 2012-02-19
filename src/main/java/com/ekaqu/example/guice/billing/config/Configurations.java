@@ -1,4 +1,4 @@
-package com.ekaqu.guice.example.billing.config;
+package com.ekaqu.example.guice.billing.config;
 
 import com.google.inject.Binder;
 import com.google.inject.Key;

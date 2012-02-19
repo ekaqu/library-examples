@@ -1,8 +1,7 @@
-package com.ekaqu.guice.example.billing.impl;
+package com.ekaqu.example.guice.billing.impl;
 
-import com.ekaqu.guice.example.billing.*;
+import com.ekaqu.example.guice.billing.*;
 import com.google.inject.Inject;
-import com.google.inject.Injector;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 
