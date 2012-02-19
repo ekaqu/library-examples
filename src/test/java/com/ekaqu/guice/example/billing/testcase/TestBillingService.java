@@ -3,12 +3,17 @@ package com.ekaqu.guice.example.billing.testcase;
 import com.ekaqu.guice.example.billing.BillingService;
 import com.ekaqu.guice.example.billing.BillingServiceFactory;
 import com.ekaqu.guice.example.billing.TestBillingModule;
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableList;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 
@@ -32,7 +37,7 @@ public class TestBillingService {
 
   @Inject
   public void setClasspath(@Named("java.class.path") String params) {
-    System.out.println("Classpath\n" + params);
+    System.out.println("Classpath\n" + ImmutableList.copyOf(params.split(":")));
   }
 
   @Inject
