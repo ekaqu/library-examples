@@ -12,13 +12,19 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.matcher.Matchers;
 import com.google.inject.multibindings.Multibinder;
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration.CombinedConfiguration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.configuration.SystemConfiguration;
 
 import java.io.PrintStream;
 import java.util.Calendar;
 
-
-public class TestBillingModule extends AbstractModule {
+/**
+ * Date: 2/26/12
+ * Time: 10:04 AM
+ */
+public class TestBillingModuleWeekend extends AbstractModule {
   @Override
   protected void configure() {
     bind(BillingService.class).to(RealBillingService.class);
@@ -47,7 +53,7 @@ public class TestBillingModule extends AbstractModule {
       .build(BillingServiceFactory.class));
 
     Calendar calendar = Calendar.getInstance();
-    calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+    calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
     bind(Calendar.class).toInstance(calendar);
 
     bindInterceptor(Matchers.any(), Matchers.annotatedWith(NotOnWeekends.class),

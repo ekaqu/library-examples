@@ -1,6 +1,7 @@
 package com.ekaqu.example.guice.billing.impl;
 
 import com.ekaqu.example.guice.billing.*;
+import com.ekaqu.example.guice.billing.annotation.NotOnWeekends;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
@@ -41,6 +42,7 @@ public class RealBillingService implements BillingService {
     output.println("Service created at " + date);
   }
 
+  @NotOnWeekends
   public Receipt chargeOrder(Order order, CreditCard creditCard) {
     Receipt receipt = receiptProvider.get();
     try {
