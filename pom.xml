@@ -80,12 +80,14 @@
                     <verbose>false</verbose>
                     <showWeaveInfo>true</showWeaveInfo>
                     <outxml>true</outxml>
+<!--
                     <weaveDependencies>
                         <weaveDependency>
                             <groupId>com.google.guava</groupId>
                             <artifactId>guava</artifactId>
                         </weaveDependency>
                     </weaveDependencies>
+-->
                 </configuration>
                 <executions>
                     <execution>

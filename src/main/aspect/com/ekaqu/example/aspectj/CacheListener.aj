@@ -1,6 +1,6 @@
 package com.ekaqu.example.aspectj;
 
-import com.google.common.cache.Cache;
+import com.ekaqu.example.aspectj.MockCache;
 
 public aspect CacheListener {
 
@@ -15,9 +15,12 @@ public aspect CacheListener {
 //        System.out.println("Cache Called: ");
 //    }
 
-    Object around(String key) : call(* Cache.getIfPresent(*)) && args(key) {
-        System.out.println("Key " + key);
+    String around(String key) : call(* MockCache.get(*)) && args(key) {
+        System.out.println("Key : " + key);
 
-        return "-aop";
+        String value = proceed(key);
+
+        System.out.println("Value : " + value);
+        return value;
     }
 }
