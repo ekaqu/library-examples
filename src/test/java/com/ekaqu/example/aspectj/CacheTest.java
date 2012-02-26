@@ -21,5 +21,8 @@ public class CacheTest {
     value = cache.get("key");
     
     Assert.assertEquals(value, "value" + CacheModifier.class.getSimpleName());
+
+    MoodIndicator.Moody.Mood mood = ((MoodIndicator.Moody) cache).getMood();
+    Assert.assertEquals(mood, MoodIndicator.Moody.Mood.HAPPY);
   }
 }

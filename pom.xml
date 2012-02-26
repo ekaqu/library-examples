@@ -47,6 +47,7 @@
             <version>11.0.1</version>
         </dependency>
 
+        <!-- http://www.eclipse.org/aspectj/doc/next/adk15notebook/ -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
