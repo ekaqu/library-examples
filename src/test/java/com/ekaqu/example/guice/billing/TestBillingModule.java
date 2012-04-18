@@ -8,10 +8,15 @@ import com.ekaqu.example.guice.billing.mocks.InMemoryCreditCardProcessor;
 import com.ekaqu.example.guice.billing.mocks.InMemoryReceipt;
 import com.ekaqu.example.guice.billing.mocks.InMemoryTransactionLog;
 import com.google.common.base.Throwables;
+import com.google.common.eventbus.EventBus;
 import com.google.inject.AbstractModule;
+import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.matcher.Matchers;
 import com.google.inject.multibindings.Multibinder;
+import com.google.inject.spi.InjectionListener;
+import com.google.inject.spi.TypeEncounter;
+import com.google.inject.spi.TypeListener;
 import org.apache.commons.configuration.*;
 
 import java.io.PrintStream;
@@ -19,6 +24,8 @@ import java.util.Calendar;
 
 
 public class TestBillingModule extends AbstractModule {
+  private final EventBus eventBus = new EventBus("Default EventBus");
+
   @Override
   protected void configure() {
     bind(BillingService.class).to(RealBillingService.class);
@@ -52,5 +59,22 @@ public class TestBillingModule extends AbstractModule {
 
     bindInterceptor(Matchers.any(), Matchers.annotatedWith(NotOnWeekends.class),
       new WeekendBlocker(getProvider(Calendar.class)));
+
+
+    // make every created object register with eventbus
+    System.out.println("Registering event buss " + eventBus);
+    bind(EventBus.class).toInstance(eventBus);
+    bindListener(Matchers.any(), new TypeListener() {
+      @Override
+      public <I> void hear(final TypeLiteral<I> type, final TypeEncounter<I> encounter) {
+        encounter.register(new InjectionListener<I>() {
+          @Override
+          public void afterInjection(final I injectee) {
+            System.out.println("Registering Object " + injectee);
+            eventBus.register(injectee);
+          }
+        });
+      }
+    });
   }
 }
