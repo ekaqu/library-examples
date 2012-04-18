@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import javax.inject.Inject;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  *
  */
@@ -27,6 +29,7 @@ public class TestGlobalEventBus {
   public void test() throws InterruptedException {
     System.out.println("Running test");
     eventBus.post("Hello my friend hello");
+    assertTrue(called, "Notify was called");
   }
 
   /**
