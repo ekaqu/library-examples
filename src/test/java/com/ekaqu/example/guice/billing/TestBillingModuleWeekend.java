@@ -1,5 +1,6 @@
 package com.ekaqu.example.guice.billing;
 
+import ch.qos.logback.classic.LoggerContext;
 import com.ekaqu.example.guice.billing.annotation.NotOnWeekends;
 import com.ekaqu.example.guice.billing.annotation.WeekendBlocker;
 import com.ekaqu.example.guice.billing.config.Configurations;
@@ -16,7 +17,10 @@ import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.SystemConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Calendar;
 

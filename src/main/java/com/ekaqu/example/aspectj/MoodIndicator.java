@@ -3,6 +3,8 @@ package com.ekaqu.example.aspectj;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.DeclareParents;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 2/25/12
@@ -10,6 +12,8 @@ import org.aspectj.lang.annotation.DeclareParents;
  */
 @Aspect
 public class MoodIndicator {
+  private static final Logger LOG = LoggerFactory.getLogger(MoodIndicator.class);
+
   // this interface can be outside of the aspect
   public interface Moody {
     public static enum Mood {HAPPY, SAD};
@@ -31,6 +35,6 @@ public class MoodIndicator {
 
   @Before("execution(* com.ekaqu.example.aspectj.MockCache.*(..)) && this(m)")
   public void feelingMoody(Moody m) {
-    System.out.println("I'm feeling " + m.getMood());
+    LOG.info("I'm feeling {}", m.getMood());
   }
 }

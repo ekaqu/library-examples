@@ -18,12 +18,16 @@ import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
 import org.apache.commons.configuration.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.PrintStream;
 import java.util.Calendar;
 
 
 public class TestBillingModule extends AbstractModule {
+  private static final Logger LOG = LoggerFactory.getLogger(TestBillingModule.class);
+  
   private final EventBus eventBus = new EventBus("Default EventBus");
 
   @Override
@@ -40,6 +44,7 @@ public class TestBillingModule extends AbstractModule {
       conf.addConfiguration(new SystemConfiguration());
       Configurations.bindProperties(this.binder(), conf);
     } catch (ConfigurationException e) {
+      LOG.error("Unable to process configurations", e);
       Throwables.propagate(e);
     }
 
@@ -62,7 +67,7 @@ public class TestBillingModule extends AbstractModule {
 
 
     // make every created object register with eventbus
-    System.out.println("Registering event buss " + eventBus);
+    LOG.info("Registering event buss {}", eventBus);
     bind(EventBus.class).toInstance(eventBus);
     bindListener(Matchers.any(), new TypeListener() {
       @Override
@@ -70,7 +75,11 @@ public class TestBillingModule extends AbstractModule {
         encounter.register(new InjectionListener<I>() {
           @Override
           public void afterInjection(final I injectee) {
-            System.out.println("Registering Object " + injectee);
+            if( injectee instanceof String) {
+              // don't bother
+              return;
+            }
+            LOG.debug("Registering Object {} with eventbus", injectee);
             eventBus.register(injectee);
           }
         });

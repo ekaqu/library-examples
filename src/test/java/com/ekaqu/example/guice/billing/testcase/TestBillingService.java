@@ -4,6 +4,8 @@ import com.ekaqu.example.guice.billing.BillingService;
 import com.ekaqu.example.guice.billing.BillingServiceFactory;
 import com.ekaqu.example.guice.billing.TestBillingModule;
 import com.google.common.collect.ImmutableList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
@@ -16,6 +18,8 @@ import java.util.Set;
 
 @Guice(modules = {TestBillingModule.class})
 public class TestBillingService {
+  private static final Logger LOG = LoggerFactory.getLogger(TestBillingService.class);
+  
   private final Provider<BillingService> provider;
   private final BillingServiceFactory factory;
 
@@ -28,17 +32,17 @@ public class TestBillingService {
 
   @Inject
   public void setParam(@Named("test.foo") String params) {
-    System.out.println("Set Param called: " + params);
+    LOG.info("Set Param called: {}", params);
   }
 
   @Inject
   public void setClasspath(@Named("java.class.path") String params) {
-    System.out.println("Classpath\n" + ImmutableList.copyOf(params.split(":")));
+    LOG.info("Classpath\n{}", ImmutableList.copyOf(params.split(":")));
   }
 
   @Inject
   public void setMultiBindings(Set<String> args) {
-    System.out.println(args);
+    LOG.info("setMultiBindings called with {}", args);
   }
 
   @Test(groups = {"Unit"})
